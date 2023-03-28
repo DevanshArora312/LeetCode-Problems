@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        #include<iostream>
+        #include<string>
+        
+        int len = s.length();
+        int longest = 0;
+        int  space = 0;
+        for (int i=0;i<len;i++){
+            int innerLong = 0;
+            int list[127]={0};
+            for (int j=i;j<len;j++){
+                int a = s[j];
+                if (list[a]==0){
+                    list[a]++;
+                    innerLong++;
+                }
+                else{
+                    break;
+                }
+            }
+            if (innerLong>longest){
+                longest = innerLong;
+            }
+        }
+        return longest;
+    }
+
+};
