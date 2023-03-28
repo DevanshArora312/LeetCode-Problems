@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        #include<math.h>
+        int temp=x;
+        long rev=0;
+        if (x<0){
+            return 0;
+        }
+        else{
+            while (temp!=0){
+                
+                if (( 10*rev + temp%10) < pow(2,31)){
+                    rev = ((10*rev) + temp%10);
+                    temp/=10;
+                }
+                else{
+                    return 0;
+                }
+            }
+            //std::cout<<x<<"  "<<rev;
+            rev = (int)rev;
+            if (x==rev){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+    }
+};
