@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int maxSatisfaction(vector<int>& sat) {
+        #include<bits/stdc++.h>
+        int len = sat.size();
+        int arr[len];
+        for (int x=0;x<len;x++){
+            arr[x] = sat[x];
+        }
+        sort(arr,arr+len);
+        int i=0,j=0,sum=0,insum=0;
+        while (i<len){
+            if (j == len){
+                i++;
+                j=i;
+                if (insum>sum){
+                    sum = insum;
+                }
+                insum =0;
+            }
+            if (i==len){
+                break;
+            }
+            insum += (j-i+1) * arr[j];
+            j++;
+        }
+        return sum;
+    }
+};
