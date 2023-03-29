@@ -1,0 +1,40 @@
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        #include<vector>
+        vector<string> arr(numRows,"");
+        int len = s.length();
+        bool runReverse = false;
+        int i=0,index=0;
+        if (numRows == 1){
+            return s;
+        }
+        while (i<len){
+            if (runReverse == true){
+                arr[index]+=s[i];
+                //cout<<index<<" "<<s[i]<<" ";
+                index--;
+                if (index == -1){
+                    runReverse = false;
+                    index+=2;
+                }
+                
+            }
+            else{
+                arr[index] += s[i];
+                //cout<<index<<" "<<s[i]<<" ";
+                index++;
+                if (index == numRows){
+                    runReverse = true;
+                    index-=2;
+                }
+            }
+            i++;
+        }
+        string result;
+        for (int i=0;i<numRows;i++){
+            result+=arr[i];
+        }
+        return result;   
+    }
+};
