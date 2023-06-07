@@ -1,0 +1,61 @@
+string bin(int num){
+            string val = "";
+            while(num){
+                int a = num%2;
+                val+=(char)(48+a);
+                num/=2;
+            }
+            reverse(val.begin(),val.end());
+            
+            return val;
+        }
+
+class Solution {
+public:
+    int minFlips(int a, int b, int c) {
+        //bit constrait per digit = 30
+        
+        int ans = 0;
+        string bina = bin(a),binb = bin(b),binc = bin(c);
+        int aLen = bina.length(), bLen = binb.length(), cLen = binc.length();
+        int finLen;
+        if (aLen >= bLen && aLen >= cLen ){
+            finLen = aLen;
+        } 
+        else if(bLen >= cLen){
+            finLen = bLen;
+        }
+        else{
+            finLen = cLen;
+        }
+        for (int j=0;j<finLen-aLen;j++){
+            bina = "0" + bina;
+        }
+        for (int j=0;j<finLen-bLen;j++){
+            binb = "0" + binb;
+        }
+        for (int j=0;j<finLen-cLen;j++){
+            binc = "0" + binc;
+        }
+        // cout<<bina<<endl;
+        // cout<<binb<<endl;
+        // cout<<binc<<endl;
+        for(int i=0;i<finLen;i++){
+            if (binc[i] == '0'){
+                if (bina[i] == '1'){
+                    ans++;
+                }
+                if(binb[i] == '1'){
+                    ans++;
+                }
+            }
+            else{
+                if (binb[i] == '0' && bina[i] == '0'){
+                    ans++;
+                    
+                }
+            }
+        }
+        return ans;
+    }
+};
